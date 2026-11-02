@@ -11,7 +11,7 @@ a-Shell mini. Команда (Shortcuts) запускает движок, пок
 2. В a-Shell:
 
 ```
-lg2 clone <адрес репозитория> ~/Documents/dpiphone
+lg2 clone https://github.com/ddosip/dpiphone.git ~/Documents/dpiphone
 cd ~/Documents/dpiphone
 sh install.sh
 ```
