@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import List, Optional, Set
 
 from dpiphone import thresholds as T
-from dpiphone.buckets import bucket
+from dpiphone.buckets import bucket, normalize
 from dpiphone.model import RunResult, Verdict
 
 TEXT = {
@@ -19,15 +19,24 @@ TEXT = {
     "dns_new": "Оператор начал подменять DNS",
     "channel": "Блокировок не вижу, похоже на качество канала",
     "ok": "Всё в порядке",
+    "ok_usual": "Обычная картина: DPI режет {n} сайтов из {total}, белого списка нет",
 }
 
 
 # ── чистые функции над RunResult (их же использует compare.py) ──────────────
 
 def _domain_bucket(d) -> str:
-    """Худшая корзина по трём колонкам домена: block > channel > noise."""
+    """Худшая корзина по трём колонкам домена: block > channel > noise.
+
+    Отдельная сигнатура DPI: HTTP на 80-м порту отвечает (или хотя бы соединяется),
+    а TLS-хендшейк молча глушится в обеих версиях. Мёртвый канал убил бы и HTTP
+    (SYN DROP), поэтому такой домен это блокировка, а не канал.
+    """
     kinds = {bucket(s, d.detail) for s in (d.http, d.tls12, d.tls13)}
     if "block" in kinds:
+        return "block"
+    tls_dropped = normalize(d.tls12) == "TLS DROP" and normalize(d.tls13) == "TLS DROP"
+    if tls_dropped and normalize(d.http) != "SYN DROP":
         return "block"
     if "channel" in kinds:
         return "channel"
@@ -150,4 +159,7 @@ def decide(run: RunResult, base: Optional[RunResult], mode: str = "quick", trust
     if channel_share(run) >= T.CHANNEL_MIN_SHARE or tg_bad:
         return Verdict("channel", TEXT["channel"])
 
+    blocked = blocked_domains(run)
+    if blocked:
+        return Verdict("ok", TEXT["ok_usual"].format(n=len(blocked), total=len(run.domains or [])))
     return Verdict("ok", TEXT["ok"])

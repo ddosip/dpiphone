@@ -1,0 +1,350 @@
+# DPI Logs
+# Дата: 2026-11-02T17:10:17
+# Режим: quick (тесты 0123)
+# Сеть: 
+# Движок: dpi-detector 8d6d25a733f8
+# Обёртка: dpiphone 0.1.0
+
+╭──────────────────── Информация о сети и системе ────────────────────╮
+│   IPv4: 80.66.93.141  Subnet: 80.66.92.0/22  TTLB: 361 ms           │
+│   IPv6: недоступен                                                  │
+│   Org: Sberbank-Telecom - Sberbank-Telecom LLC, RU (AS206673)       │
+│   Location: 🇷🇺 RU                                                   │
+│   Локальный обход DPI на устройстве: не обнаружен                   │
+╰─────────────────────────────────────────────────────────────────────╯
+
+Проверка доступности DNS-серверов  DoH: 36 | DoT: 33 | UDP: 37 | Запрещённых: 5 | Доверенных: 2 | timeout: 5.0s
+
+                           DoH эндпоинты                            
+Провайдер         DoH URL                                           
+Google            https://dns.google/dns-query                      
+Cloudflare        https://cloudflare-dns.com/dns-query              
+Cloudflare (M)    https://mozilla.cloudflare-dns.com/dns-query      
+Cloudflare (S)    https://security.cloudflare-dns.com/dns-query     
+Cloudflare dns    https://dns.cloudflare.com/dns-query              
+Cloudflare dot    https://1dot1dot1dot1.cloudflare-dns.com/dns-query
+Cloudflare IP     https://1.1.1.1/dns-query                         
+Cloudflare IP 2   https://1.0.0.1/dns-query                         
+Cloudflare one    https://one.one.one.one/dns-query                 
+Quad9             https://dns.quad9.net/dns-query                   
+Quad9 (S)         https://dns11.quad9.net/dns-query                 
+Quad9 (UN)        https://dns10.quad9.net/dns-query                 
+Quad9 (UN2)       https://dns12.quad9.net/dns-query                 
+AdGuard           https://dns.adguard-dns.com/dns-query             
+AdGuard (F)       https://family.adguard-dns.com/dns-query          
+AdGuard (L)       https://dns.adguard.com/dns-query                 
+AdGuard (UN)      https://unfiltered.adguard-dns.com/dns-query      
+Alibaba           https://dns.alidns.com/dns-query                  
+CleanBrowsing     https://doh.cleanbrowsing.org/doh/security-filter 
+ControlD          https://freedns.controld.com/p0                   
+DNS.SB            https://dns.sb/dns-query                          
+DNS4all           https://doh.dns4all.eu/dns-query                  
+dnsforge          https://dnsforge.de/dns-query                     
+Gesellschaft      https://dns.digitale-gesellschaft.ch/dns-query    
+LibreDNS          https://doh.libredns.gr/dns-query                 
+Mullvad           https://dns.mullvad.net/dns-query                 
+NextDNS           https://dns.nextdns.io/dns-query                  
+OpenDNS           https://doh.opendns.com/dns-query #1              
+                  https://dns.opendns.com/dns-query #2              
+UncensoredDNS     https://anycast.uncensoreddns.org/dns-query       
+Wikimedia         https://wikimedia-dns.org/dns-query               
+XboxDNS (RU)      https://xbox-dns.ru/dns-query                     
+Comss.one         https://dns.comss.one/dns-query #1                
+                  https://doh.comss.one/dns-query #2                
+Yandex            https://common.dot.dns.yandex.net/dns-query       
+Geohide           https://dns.geohide.ru:444/dns-query              
+
+                     DoT эндпоинты                     
+Провайдер         DoT эндпоинты                        
+Google            dns.google #1, 8.8.8.8 #2, 8.8.4.4 #3
+Cloudflare (S)    security.cloudflare-dns.com          
+Cloudflare dot    1dot1dot1dot1.cloudflare-dns.com     
+Cloudflare IP     1.1.1.1                              
+Cloudflare IP 2   1.0.0.1                              
+Cloudflare one    one.one.one.one                      
+Quad9             dns.quad9.net                        
+Quad9 (S)         dns11.quad9.net                      
+Quad9 (UN)        dns10.quad9.net                      
+Quad9 (UN2)       dns12.quad9.net                      
+AdGuard           dns.adguard-dns.com                  
+AdGuard (F)       family.adguard-dns.com               
+AdGuard (L)       dns.adguard.com                      
+AdGuard (UN)      unfiltered.adguard-dns.com           
+Alibaba           dns.alidns.com                       
+CleanBrowsing     security-filter-dns.cleanbrowsing.org
+ControlD          freedns.controld.com                 
+DNS.SB            dot.sb                               
+DNS4all           dot.dns4all.eu                       
+dnsforge          dnsforge.de                          
+Gesellschaft      dns.digitale-gesellschaft.ch         
+LibreDNS          dot.libredns.gr                      
+Mullvad           dns.mullvad.net                      
+NextDNS           dns.nextdns.io                       
+OpenDNS           dns.opendns.com                      
+UncensoredDNS     unicast.censurfridns.dk              
+Wikimedia         wikimedia-dns.org                    
+XboxDNS (RU)      xbox-dns.ru                          
+Comss.one         dns.comss.one                        
+Yandex            common.dot.dns.yandex.net            
+Geohide           dns.geohide.ru                       
+
+                    UDP эндпоинты                     
+Провайдер         UDP эндпоинты                       
+Google            8.8.4.4 #1, 8.8.8.8 #2              
+Cloudflare IP     1.1.1.1                             
+Cloudflare IP 2   1.0.0.1                             
+Quad9             9.9.9.9 #1, 149.112.112.112 #2      
+Quad9 (S)         9.9.9.11                            
+Quad9 (UN)        9.9.9.10                            
+Quad9 (UN2)       9.9.9.12                            
+AdGuard           94.140.14.14 #1, 94.140.15.15 #2    
+AdGuard (F)       94.140.14.15                        
+AdGuard (UN)      94.140.14.140                       
+Alibaba           223.5.5.5 #1, 223.6.6.6 #2          
+CleanBrowsing     185.228.168.9 #1, 185.228.169.9 #2  
+ControlD          76.76.2.11 #1, 76.76.10.11 #2       
+DNS.SB            185.222.222.222 #1, 45.11.45.11 #2  
+DNS4all           194.0.5.3                           
+dnsforge          176.9.93.198                        
+NextDNS           45.90.28.0 #1, 45.90.30.0 #2        
+OpenDNS           208.67.220.220 #1, 208.67.222.222 #2
+XboxDNS (RU)      111.88.96.55                        
+Comss.one         83.220.169.155 #1, 212.109.195.93 #2
+Yandex            77.88.8.1 #1, 77.88.8.8 #2          
+Geohide           45.155.204.190                      
+MSK-IX            62.76.62.76 #1, 62.76.76.62 #2      
+НСДИ              195.208.4.1 #1, 195.208.5.1 #2      
+
+Заблокированные домены для проверки: rutor.info, flibusta.is, clubtone.do.am, rezka.ag, shikimori.one
+Незаблокированные домены для проверки: vk.ru, gosuslugi.ru
+ВНИМАНИЕ: Это независимая проверка и она не использует ваши настроенные DNS!
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
+┃ Провайдер        ┃  DoH мин ┃                     DoT мин ┃     UDP мин ┃ Реальный UDP резолвер         ┃ Подмена ┃
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
+│ Google           │   84.0мс │                      72.9мс │     108.0мс │ 8.8.4.4→GOOGLE                │     0/5 │
+│ Google #2        │          │                      72.7мс │     119.8мс │ 8.8.8.8→GOOGLE                │     0/5 │
+│ Google #3        │          │                      72.6мс │             │                               │         │
+│ Cloudflare       │   81.6мс │                           — │           — │ —                             │       — │
+│ Cloudflare (M)   │   74.2мс │                           — │           — │ —                             │       — │
+│ Cloudflare (S)   │   92.7мс │                      76.6мс │           — │ —                             │       — │
+│ Cloudflare dns   │   72.0мс │                           — │           — │ —                             │       — │
+│ Cloudflare dot   │   82.9мс │                      75.1мс │           — │ —                             │       — │
+│ Cloudflare IP    │   46.5мс │                      32.3мс │      79.4мс │ 1.1.1.1→CLOUDFLARENET         │     0/5 │
+│ Cloudflare IP 2  │   80.0мс │                      77.2мс │     121.5мс │ 1.0.0.1→CLOUDFLARENET         │     0/5 │
+│ Cloudflare one   │   43.5мс │                      26.5мс │           — │ —                             │       — │
+│ Quad9            │   69.5мс │                  59.1мс 4/5 │      70.9мс │ 9.9.9.9→WOODYNET-2            │     0/5 │
+│ Quad9 #2         │          │                             │      84.5мс │ 149.112.112.112→WOODYNET-2    │     0/5 │
+│ Quad9 (S)        │   80.3мс │                      72.6мс │      80.0мс │ 9.9.9.11→WOODYNET-1           │     0/5 │
+│ Quad9 (UN)       │   78.9мс │ UNKNOWN IncompleteReadError │      89.0мс │ 9.9.9.10→WOODYNET-2           │     0/5 │
+│ Quad9 (UN2)      │   70.8мс │                      62.0мс │      75.3мс │ 9.9.9.12→WOODYNET-2           │     0/5 │
+│ AdGuard          │   81.9мс │                      71.6мс │     123.3мс │ 94.140.14.14→CDN77            │     0/5 │
+│ AdGuard #2       │          │                             │     123.1мс │ 94.140.15.15→CDN77            │     0/5 │
+│ AdGuard (F)      │   77.2мс │                      76.4мс │     122.9мс │ 94.140.14.15→CDN77            │     0/5 │
+│ AdGuard (L)      │ TLS DROP │                      82.1мс │           — │ —                             │       — │
+│ AdGuard (UN)     │ SYN DROP │                    SYN DROP │     TIMEOUT │ 94.140.14.140: таймаут        │       — │
+│ Alibaba          │ TLS DROP │                      30.7мс │      80.2мс │ 223.5.5.5→ALIBABA-CN-NET      │     0/5 │
+│ Alibaba #2       │          │                             │      80.0мс │ 223.6.6.6→ALIBABA-CN-NET      │     0/5 │
+│ CleanBrowsing    │   73.7мс │                      76.1мс │ 110.0мс 1/2 │ 185.228.168.9→AS-VULTR        │     0/5 │
+│ CleanBrowsing #2 │          │                             │     TIMEOUT │ 185.228.169.9: таймаут        │       — │
+│ ControlD         │   62.3мс │                      67.1мс │      97.5мс │ 76.76.2.11→CDNEXT             │     0/5 │
+│ ControlD #2      │          │                             │      97.3мс │ 76.76.10.11→CDNEXT            │     0/5 │
+│ DNS.SB           │   71.6мс │                      67.7мс │     108.6мс │ 185.222.222.222→XTOM          │     0/5 │
+│ DNS.SB #2        │          │                             │     108.7мс │ 45.11.45.11→XTOM              │     0/5 │
+│ DNS4all          │   84.3мс │                      73.5мс │     128.3мс │ 194.0.5.3: выход н/д          │     0/5 │
+│ dnsforge         │   72.0мс │                      76.7мс │     120.4мс │ 176.9.93.198: выход н/д       │     0/5 │
+│ Gesellschaft     │   74.4мс │                      80.8мс │           — │ —                             │       — │
+│ LibreDNS         │   77.6мс │                      63.8мс │           — │ —                             │       — │
+│ Mullvad          │ TLS DROP │                      58.1мс │           — │ —                             │       — │
+│ NextDNS          │ TLS DROP │                    SYN DROP │      87.8мс │ 45.90.28.0→AS-VULTR           │     0/5 │
+│ NextDNS #2       │          │                             │      75.6мс │ 45.90.30.0→AS-ANEXIA          │     0/5 │
+│ OpenDNS          │  146.8мс │                      63.7мс │      75.2мс │ 208.67.220.220→CISCO-UMBRELLA │     1/5 │
+│ OpenDNS #2       │   82.5мс │                             │      77.2мс │ 208.67.222.222→CISCO-UMBRELLA │     1/5 │
+│ UncensoredDNS    │   68.4мс │                      54.8мс │           — │ —                             │       — │
+│ Wikimedia        │   85.9мс │                      77.2мс │           — │ —                             │       — │
+│ XboxDNS (RU)     │   37.0мс │                  21.1мс 4/5 │      22.2мс │ 111.88.96.55→RIPN-SU-NET      │     0/5 │
+│ Comss.one        │   42.7мс │                      28.1мс │      40.7мс │ 83.220.169.155→RU-JSCIOT      │     0/5 │
+│ Comss.one #2     │   47.1мс │                             │      39.6мс │ 212.109.195.93→RU-JSCIOT      │     0/5 │
+│ Yandex           │   53.9мс │                      45.3мс │      52.0мс │ 77.88.8.1→YANDEX              │     0/5 │
+│ Yandex #2        │          │                             │      66.9мс │ 77.88.8.8→YANDEX              │     1/5 │
+│ Geohide          │ SYN DROP │                    SYN DROP │     TIMEOUT │ 45.155.204.190: таймаут       │       — │
+│ MSK-IX           │        — │                           — │      86.0мс │ 62.76.62.76→RIPN-NS5-RU-MSK   │     5/5 │
+│ MSK-IX #2        │          │                             │      77.2мс │ 62.76.76.62→RIPN-NS5-RU-MSK   │     5/5 │
+│ НСДИ             │        — │                           — │      24.5мс │ 195.208.4.1→RIPN-NS5-RU-MSK   │     5/5 │
+│ НСДИ #2          │          │                             │      30.1мс │ 195.208.5.1→RIPN-NS5-RU-MSK   │     5/5 │
+└──────────────────┴──────────┴─────────────────────────────┴─────────────┴───────────────────────────────┴─────────┘
+
+
+[!] Ваш интернет-провайдер перехватывает DNS-запросы
+Провайдер подменяет ответы UDP DNS на заглушки или ложные NXDOMAIN/EMPTY/TIMEOUT
+Рекомендация: настройте DoH на устройстве/роутере, если еще не сделали этого.
+
+Проверка доступности доменов  Целей: 36 | IP: IPv4 | timeout: 8.0s
+
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Домен              ┃     HTTP     ┃  TLS1.2  ┃  TLS1.3  ┃ Детали                ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━┩
+│ amnezia.org        │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ aws.amazon.com     │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ browserleaks.com   │      OK      │    OK    │    OK    │ 0.7s                  │
+│ danbooru.donmai.us │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ discord.com        │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ gateway.discord.gg │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ holod.media        │      OK      │    OK    │    OK    │ 0.4s                  │
+│ hub.docker.com     │      OK      │    OK    │    OK    │ 0.6s                  │
+│ kinopub.online     │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ media.discordapp.… │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ meduza.io          │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ nnmclub.to         │      OK      │    OK    │    OK    │ 0.5s                  │
+│ protonvpn.com      │      OK      │    OK    │    OK    │ 0.4s                  │
+│ shikimori.io       │      OK      │    OK    │    OK    │ 0.3s                  │
+│ soundcloud.com     │      OK      │    OK    │    OK    │ 0.4s                  │
+│ standby-rezka.tv   │      OK      │    OK    │    OK    │ 0.7s                  │
+│ vk.ru              │      OK      │    OK    │    OK    │ 0.7s                  │
+│ www.apkmirror.com  │      OK      │    OK    │    OK    │ 0.4s                  │
+│ www.canva.com      │      OK      │    OK    │    OK    │ 0.4s                  │
+│ www.cdn77.com      │   SYN DROP   │ SYN DROP │ SYN DROP │ TCP SYN timeout       │
+│ www.coursera.org   │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.currenttime.tv │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.dw.com         │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.euronews.com   │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.facebook.com   │ READ TIMEOUT │ TLS DROP │ TLS DROP │ HTTP:Timeout          │
+│                    │              │          │          │ TLS Handshake timeout │
+│ www.google.com     │      OK      │    OK    │    OK    │ 0.6s                  │
+│ www.instagram.com  │ READ TIMEOUT │ TLS DROP │ TLS DROP │ HTTP:Timeout          │
+│                    │              │          │          │ TLS Handshake timeout │
+│ www.intel.com      │      OK      │    OK    │    OK    │ 0.2s                  │
+│ www.linkedin.com   │      OK      │    OK    │    OK    │ 0.6s                  │
+│ www.linuxserver.io │      OK      │    OK    │    OK    │ 0.6s                  │
+│ www.messenger.com  │ READ TIMEOUT │ TLS DROP │ TLS DROP │ HTTP:Timeout          │
+│                    │              │          │          │ TLS Handshake timeout │
+│ www.svoboda.org    │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.themoscowtime… │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ www.torproject.org │      OK      │    OK    │    OK    │ 0.4s                  │
+│ www.youtube.com    │      OK      │ TLS DROP │ TLS DROP │ TLS Handshake timeout │
+│ x.com              │ READ TIMEOUT │ TLS DROP │ TLS DROP │ HTTP:Timeout          │
+│                    │              │          │          │ TLS Handshake timeout │
+└────────────────────┴──────────────┴──────────┴──────────┴───────────────────────┘
+
+Проверка TCP 16-20KB блокировки  Целей: 110 | timeout: 8.0s
+┏━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ID     ┃ ASN      ┃ Провайдер         ┃  Статус   ┃ Детали                          ┃
+┡━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ AK-01  │ AS20940☆ │ Akamai 1          │    OK     │ 3.3s                            │
+│ AK-02  │ AS20940☆ │ Akamai 1          │    OK     │ 3.4s                            │
+│ AK-03  │ AS20940☆ │ Akamai 1 HTTP     │    OK     │ 3.1s                            │
+│ AK-04  │ AS20940☆ │ Akamai 1          │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ AK-05  │ AS16625  │ Akamai 2          │    OK     │ 1.9s                            │
+│ AK-06  │ AS16625  │ Akamai 2          │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ AK-07  │ AS12222  │ Akamai 3          │    OK     │ 4.8s                            │
+│ AK-08  │ AS12222  │ Akamai 3          │    OK     │ 2.4s                            │
+│ AK-09  │ AS33905  │ Akamai 4          │    OK     │ 2.5s                            │
+│ AK-10  │ AS33905  │ Akamai 4          │    OK     │ 3.1s                            │
+│ AK-11  │ AS63949  │ Akamai Cloud      │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ AK-12  │ AS63949  │ Akamai Cloud      │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ OR-01  │ AS31898  │ Oracle Cloud      │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ OR-02  │ AS31898  │ Oracle Cloud      │ TLS DROP  │ TLS Handshake timeout | 8.2s    │
+│ OR-03  │ AS31898  │ Oracle Cloud      │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ OR-04  │ AS31898  │ Oracle Cloud      │    OK     │ 1.6s                            │
+│ OR-05  │ AS54253  │ Oracle 1 HTTP     │  TCP RST  │ TCP соединение сброшено | 0.2s  │
+│ OR-06  │ AS54253  │ Oracle 1          │    OK     │ 1.7s                            │
+│ OR-07  │ AS54253  │ Oracle 1          │    OK     │ 3.0s                            │
+│ OR-08  │ AS6142   │ Oracle 3          │    OK     │ 2.9s                            │
+│ OR-09  │ AS6142   │ Oracle 3          │    OK     │ 3.5s                            │
+│ OR-10  │ AS14544  │ Oracle 4          │    OK     │ 2.0s                            │
+│ OR-11  │ AS20054  │ Oracle 5          │    OK     │ 3.5s                            │
+│ HE-01  │ AS24940☆ │ Hetzner           │    OK     │ 1.7s                            │
+│ HE-02  │ AS24940☆ │ Hetzner           │    OK     │ 3.0s                            │
+│ HE-03  │ AS213230 │ Hetzner Cloud 2   │    OK     │ 4.3s                            │
+│ HE-04  │ AS213230 │ Hetzner Cloud 2   │ TLS DROP  │ TLS Handshake timeout | 8.3s    │
+│ HE-05  │ AS212317 │ Hetzner Cloud 3   │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ HE-06  │ AS212317 │ Hetzner Cloud 3   │    OK     │ 3.4s                            │
+│ HE-07  │ AS215859 │ Hetzner Cloud 4   │    OK     │ 4.2s                            │
+│ HE-08  │ AS215859 │ Hetzner Cloud 4   │ TLS DROP  │ TLS Handshake timeout | 8.3s    │
+│ HE-02H │ AS24940☆ │ Hetzner HTTP      │    OK     │ 1.6s                            │
+│ SW-01  │ AS12876  │ Scaleway 1        │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ SW-02  │ AS12876  │ Scaleway 1        │    OK     │ 1.8s                            │
+│ SW-03  │ AS12876  │ Scaleway 1        │    OK     │ 1.7s                            │
+│ SW-04  │ AS12876  │ Scaleway 1 HTTP   │    OK     │ 1.6s                            │
+│ SW-05  │ AS29447  │ Scaleway 2        │ TLS ALERT │ Поддельный TLS Alert | 0.2s     │
+│ SW-06  │ AS29447  │ Scaleway 2        │    OK     │ 1.9s                            │
+│ SW-07  │ AS29447  │ Scaleway 2        │    OK     │ 1.8s                            │
+│ SW-08  │ AS29447  │ Scaleway 2        │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ CNT-01 │ AS51167  │ Contabo 1         │    OK     │ 1.9s                            │
+│ CNT-02 │ AS51167  │ Contabo 1         │    OK     │ 3.2s                            │
+│ CNT-03 │ AS51167  │ Contabo 1         │    OK     │ 2.2s                            │
+│ CNT-04 │ AS51167  │ Contabo 1         │    OK     │ 1.7s                            │
+│ CNT-05 │ AS141995 │ Contabo 2         │  REFUSED  │ TCP соединение отклонено | 0.3s │
+│ CNT-06 │ AS141995 │ Contabo 2         │    OK     │ 3.2s                            │
+│ CNT-07 │ AS141995 │ Contabo 2         │    OK     │ 3.1s                            │
+│ DO-01  │ AS14061  │ DigitalOcean 1    │    OK     │ 2.7s                            │
+│ DO-02  │ AS14061  │ DigitalOcean 1    │ TLS DROP  │ TLS Handshake timeout | 8.2s    │
+│ DO-03  │ AS14061  │ DigitalOcean 1    │    OK     │ 1.8s                            │
+│ DO-04  │ AS14061  │ DigitalOcean 1    │    OK     │ 3.5s                            │
+│ DO-05  │ AS14061  │ DigitalOcean 1    │    OK     │ 2.7s                            │
+│ DO-06  │ AS46652  │ DigitalOcean 2    │    OK     │ 1.9s                            │
+│ DO-07  │ AS46652  │ DigitalOcean 2    │    OK     │ 1.8s                            │
+│ FST-01 │ AS54113  │ Fastly            │    OK     │ 1.6s                            │
+│ FST-02 │ AS54113  │ Fastly            │    OK     │ 1.6s                            │
+│ FST-03 │ AS54113  │ Fastly GitHub 108 │    OK     │ 1.8s                            │
+│ FST-04 │ AS54113  │ Fastly GitHub 109 │    OK     │ 1.7s                            │
+│ FST-05 │ AS54113  │ Fastly GitHub 110 │    OK     │ 1.7s                            │
+│ FST-06 │ AS54113  │ Fastly GitHub 111 │    OK     │ 1.8s                            │
+│ FST-07 │ AS54113  │ Fastly Gog        │    OK     │ 2.0s                            │
+│ AWS-02 │ AS16509☆ │ AWS 1             │    OK     │ 1.7s                            │
+│ AWS-03 │ AS16509☆ │ AWS 1             │    OK     │ 2.8s                            │
+│ AWS-04 │ AS14618  │ AWS 2             │ TLS DROP  │ TLS Handshake timeout | 8.2s    │
+│ AWS-05 │ AS14618  │ AWS 2             │    OK     │ 2.8s                            │
+│ AWS-06 │ AS8987   │ AWS 3             │ TLS DROP  │ TLS Handshake timeout | 8.2s    │
+│ AWS-07 │ AS8987   │ AWS 3             │    OK     │ 3.0s                            │
+│ CDN-02 │ AS60068  │ CDN77 #1          │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ CDN-03 │ AS60068  │ CDN77 #1          │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ CDN-04 │ AS60068  │ CDN77 #1 HTTP     │    OK     │ 1.6s                            │
+│ CDN-05 │ AS212238 │ CDN77 #2          │    OK     │ 1.7s                            │
+│ CDN-06 │ AS212238 │ CDN77 #2          │    OK     │ 1.8s                            │
+│ CDN-07 │ AS212238 │ CDN77 #2          │    OK     │ 1.7s                            │
+│ CF-01  │ AS13335  │ Cloudflare        │    OK     │ 1.7s                            │
+│ CF-02  │ AS13335  │ Cloudflare        │    OK     │ 1.7s                            │
+│ CF-03  │ AS13335  │ Cloudflare        │    OK     │ 1.8s                            │
+│ CF-04  │ AS13335  │ Cloudflare        │    OK     │ 1.7s                            │
+│ CF-05  │ AS13335  │ Cloudflare        │    OK     │ 1.8s                            │
+│ CF-06  │ AS13335  │ Cloudflare        │    OK     │ 1.7s                            │
+│ GCR-01 │ AS199524 │ Gcore 1           │    OK     │ 1.9s                            │
+│ GCR-02 │ AS199524 │ Gcore 1           │    OK     │ 2.5s                            │
+│ GCR-03 │ AS199524 │ Gcore 1           │    OK     │ 1.7s                            │
+│ GCR-04 │ AS199524 │ Gcore 1           │    OK     │ 2.6s                            │
+│ GCR-05 │ AS202422 │ Gcore 2           │    OK     │ 2.0s                            │
+│ GCR-06 │ AS202422 │ Gcore 2           │    OK     │ 1.7s                            │
+│ OVH-01 │ AS16276  │ OVH               │    OK     │ 1.6s                            │
+│ OVH-02 │ AS16276  │ OVH               │    OK     │ 1.7s                            │
+│ OVH-03 │ AS16276  │ OVH               │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ OVH-04 │ AS16276  │ OVH               │    OK     │ 2.7s                            │
+│ OVH-05 │ AS16276  │ OVH               │    OK     │ 1.9s                            │
+│ OVH-06 │ AS16276  │ OVH HTTP          │    OK     │ 1.7s                            │
+│ VLT-01 │ AS20473  │ Vultr             │    OK     │ 1.7s                            │
+│ VLT-02 │ AS20473  │ Vultr             │    OK     │ 1.8s                            │
+│ VLT-03 │ AS20473  │ Vultr             │    OK     │ 1.6s                            │
+│ VLT-04 │ AS20473  │ Vultr             │ TLS DROP  │ TLS Handshake timeout | 8.1s    │
+│ CV-01  │ AS62240  │ Clouvider         │    OK     │ 1.8s                            │
+│ CV-02  │ AS62240  │ Clouvider         │    OK     │ 1.8s                            │
+│ FT-01  │ AS53667  │ FranTech          │    OK     │ 1.7s                            │
+│ FT-02  │ AS53667  │ FranTech          │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ GC-01  │ AS396982 │ Google Cloud      │    OK     │ 1.5s                            │
+│ GC-02  │ AS396982 │ Google Cloud      │    OK     │ 2.9s                            │
+│ IM-01  │ AS20860  │ IOMART 1          │    OK     │ 1.7s                            │
+│ IM-02  │ AS21130  │ IOMART 2          │ SYN DROP  │ TCP SYN timeout | 8.0s          │
+│ MBC-01 │ AS8849   │ Melbicom 1        │    OK     │ 1.5s                            │
+│ MBC-03 │ AS56630  │ Melbicom 2        │    OK     │ 1.5s                            │
+│ CN-01  │ AS51765  │ CreaNova          │    OK     │ 1.4s                            │
+│ FRX-01 │ AS48040  │ Fornex            │    OK     │ 2.0s                            │
+│ ME-01  │ AS9009   │ M247 Europe SRL   │    OK     │ 2.0s                            │
+│ SCA-01 │ AS58061  │ Scalaxy           │    OK     │ 1.7s                            │
+│ ZL-01  │ AS21859  │ Zenlayer          │    OK     │ 1.7s                            │
+└────────┴──────────┴───────────────────┴───────────┴─────────────────────────────────┘
+
+╭────────────────────────── Итог ───────────────────────────╮
+│ DNS доступность    30/36 DoH  29/33 DoT  34/37 UDP        │
+│ Подмена резолвера  —                                      │
+│ Подмена ответов    у 7/34 UDP                             │
+│ Домены             31/36 HTTP  16/36 TLS1.2  16/36 TLS1.3 │
+│ TCP 16-20KB        √ 86/110 OK  (78% ОК)                  │
+╰───────────────────────────────────────────────────────────╯

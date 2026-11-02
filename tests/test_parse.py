@@ -81,6 +81,14 @@ def test_sni_found():
     assert s.per_provider["Hetzner"] == ["yandex.ru", "vk.com"] and s.per_provider["Cloudflare"] == []
 
 
+def test_phone_log_parses_completely():
+    r = load("phone_sber_quick.log")
+    assert r.complete and r.truncated is False
+    assert len(r.domains) == 36 and len(r.tcp) == 110
+    assert r.net.asn == "AS206673" and r.net.org.startswith("Sberbank-Telecom")
+    assert (r.dns.udp_ok, r.dns.udp_total, r.dns.subst_sub, r.dns.subst_total) == (34, 37, 7, 34)
+
+
 def test_load_known_domains(tmp_path):
     (tmp_path / "domains.txt").write_text("x.com/i/api/1.1/graphql\nwww.google.com\n", encoding="utf-8")
     assert load_known_domains(tmp_path) == ["x.com", "www.google.com"]

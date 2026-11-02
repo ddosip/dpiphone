@@ -72,8 +72,8 @@ def test_new_blocks_needs_three_more():
 
 
 def test_channel_by_share_and_telegram():
-    assert decide(make_run(domain_statuses=["TLS DROP"] * 10 + ["OK"] * 26, tcp_statuses=["OK"] * 110), None).code == "ok"
-    assert decide(make_run(domain_statuses=["TLS DROP"] * 36, tcp_statuses=["OK"] * 70), None).code == "channel"   # 36/106 > 0.25
+    assert decide(make_run(domain_statuses=["SYN DROP"] * 10 + ["OK"] * 26, tcp_statuses=["OK"] * 110), None).code == "ok"
+    assert decide(make_run(domain_statuses=["SYN DROP"] * 36, tcp_statuses=["OK"] * 70), None).code == "channel"   # 36/106 > 0.25
     assert decide(make_run(telegram=("ОК", "ЗАМЕДЛЕНИЕ", 5, 5)), None).code == "channel"
 
 
@@ -100,3 +100,27 @@ def test_same_operator_different_asn_is_not_vpn():
     now = make_run(asn="AS29497")
     now.net.org = "MTS Yug"
     assert decide(now, base).code == "ok"
+
+
+def test_http_ok_with_tls_drop_is_a_block():
+    from dpiphone.model import DomainResult
+    from dpiphone.verdict import blocked_domains
+    r = make_run()
+    r.domains = [
+        DomainResult("dpi.com", "OK", "TLS DROP", "TLS DROP", "TLS Handshake timeout"),
+        DomainResult("dpi2.com", "READ TIMEOUT", "TLS DROP", "TLS DROP", "HTTP:Timeout"),
+        DomainResult("dead.com", "SYN DROP", "SYN DROP", "SYN DROP", "TCP SYN timeout"),
+        DomainResult("slow.com", "OK", "TLS DROP", "OK", ""),
+    ]
+    assert blocked_domains(r) == {"dpi.com", "dpi2.com"}
+
+
+def test_first_run_with_usual_blocks_is_ok_but_says_so():
+    from pathlib import Path
+    from dpiphone.parse import parse_log
+    from tests.test_parse import DOMAINS
+    run = parse_log((Path(__file__).parent / "fixtures" / "phone_sber_quick.log").read_text(encoding="utf-8"), DOMAINS)
+    assert run.complete and len(run.domains) == 36 and len(run.tcp) == 110
+    v = decide(run, None)
+    assert v.code == "ok"
+    assert "19 сайтов" in v.text and "белого списка нет" in v.text
