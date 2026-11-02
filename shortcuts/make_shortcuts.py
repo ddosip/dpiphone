@@ -119,7 +119,9 @@ def save_shortcut() -> dict:
     s, n, l, j = _uuid(), _uuid(), _uuid(), _uuid()
 
     def get_file(name: str, out_uuid: str) -> dict:
-        return action(GET_FILE, {"UUID": out_uuid, "ShowWhenRun": False,
+        # copyFile: отдать содержимое, а не ссылку на файл в песочнице a-Shell; без него
+        # Команды на iOS 18 получают «Нет объектов» (см. GetFileIntentHandler.swift в a-Shell)
+        return action(GET_FILE, {"UUID": out_uuid, "ShowWhenRun": False, "copyFile": True,
                                  "fileName": "dpiphone/" + name, "errorIfNotFound": True})
 
     def save(src_uuid: str, ext: str) -> dict:
