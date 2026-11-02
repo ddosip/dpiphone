@@ -1,0 +1,127 @@
+Проверка TCP 16-20KB блокировки  Целей: 110 | timeout: 8.0s
+┏━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ ID     ┃ ASN      ┃ Провайдер         ┃  Статус  ┃ Детали      ┃
+┡━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ AK-01  │ AS20940☆ │ Akamai 1          │    OK    │ 3.1s        │
+│ AK-02  │ AS20940☆ │ Akamai 1          │    OK    │ 3.1s        │
+│ AK-03  │ AS20940☆ │ Akamai 1 HTTP     │    OK    │ 3.1s        │
+│ AK-04  │ AS20940☆ │ Akamai 1          │    OK    │ 3.1s        │
+│ AK-05  │ AS16625  │ Akamai 2          │    OK    │ 3.1s        │
+│ AK-06  │ AS16625  │ Akamai 2          │    OK    │ 3.1s        │
+│ AK-07  │ AS12222  │ Akamai 3          │    OK    │ 3.1s        │
+│ AK-08  │ AS12222  │ Akamai 3          │    OK    │ 3.1s        │
+│ AK-09  │ AS33905  │ Akamai 4          │    OK    │ 3.1s        │
+│ AK-10  │ AS33905  │ Akamai 4          │    OK    │ 3.1s        │
+│ AK-11  │ AS63949  │ Akamai Cloud      │    OK    │ 3.1s        │
+│ AK-12  │ AS63949  │ Akamai Cloud      │    OK    │ 3.1s        │
+│ OR-01  │ AS31898  │ Oracle Cloud      │ DETECTED │ RST at 18KB │
+│ OR-02  │ AS31898  │ Oracle Cloud      │ DETECTED │ RST at 18KB │
+│ OR-03  │ AS31898  │ Oracle Cloud      │ DETECTED │ RST at 18KB │
+│ OR-04  │ AS31898  │ Oracle Cloud      │ DETECTED │ RST at 18KB │
+│ OR-05  │ AS54253  │ Oracle 1 HTTP     │ DETECTED │ RST at 18KB │
+│ OR-06  │ AS54253  │ Oracle 1          │ DETECTED │ RST at 18KB │
+│ OR-07  │ AS54253  │ Oracle 1          │ DETECTED │ RST at 18KB │
+│ OR-08  │ AS6142   │ Oracle 3          │ DETECTED │ RST at 18KB │
+│ OR-09  │ AS6142   │ Oracle 3          │ DETECTED │ RST at 18KB │
+│ OR-10  │ AS14544  │ Oracle 4          │ DETECTED │ RST at 18KB │
+│ OR-11  │ AS20054  │ Oracle 5          │ DETECTED │ RST at 18KB │
+│ HE-01  │ AS24940☆ │ Hetzner           │ DETECTED │ RST at 18KB │
+│ HE-02  │ AS24940☆ │ Hetzner           │ DETECTED │ RST at 18KB │
+│ HE-03  │ AS213230 │ Hetzner Cloud 2   │ DETECTED │ RST at 18KB │
+│ HE-04  │ AS213230 │ Hetzner Cloud 2   │ DETECTED │ RST at 18KB │
+│ HE-05  │ AS212317 │ Hetzner Cloud 3   │ DETECTED │ RST at 18KB │
+│ HE-06  │ AS212317 │ Hetzner Cloud 3   │ DETECTED │ RST at 18KB │
+│ HE-07  │ AS215859 │ Hetzner Cloud 4   │ DETECTED │ RST at 18KB │
+│ HE-08  │ AS215859 │ Hetzner Cloud 4   │ DETECTED │ RST at 18KB │
+│ HE-02H │ AS24940☆ │ Hetzner HTTP      │ DETECTED │ RST at 18KB │
+│ SW-01  │ AS12876  │ Scaleway 1        │    OK    │ 3.1s        │
+│ SW-02  │ AS12876  │ Scaleway 1        │    OK    │ 3.1s        │
+│ SW-03  │ AS12876  │ Scaleway 1        │    OK    │ 3.1s        │
+│ SW-04  │ AS12876  │ Scaleway 1 HTTP   │    OK    │ 3.1s        │
+│ SW-05  │ AS29447  │ Scaleway 2        │    OK    │ 3.1s        │
+│ SW-06  │ AS29447  │ Scaleway 2        │    OK    │ 3.1s        │
+│ SW-07  │ AS29447  │ Scaleway 2        │    OK    │ 3.1s        │
+│ SW-08  │ AS29447  │ Scaleway 2        │    OK    │ 3.1s        │
+│ CNT-01 │ AS51167  │ Contabo 1         │ DETECTED │ RST at 18KB │
+│ CNT-02 │ AS51167  │ Contabo 1         │ DETECTED │ RST at 18KB │
+│ CNT-03 │ AS51167  │ Contabo 1         │ DETECTED │ RST at 18KB │
+│ CNT-04 │ AS51167  │ Contabo 1         │ DETECTED │ RST at 18KB │
+│ CNT-05 │ AS141995 │ Contabo 2         │ DETECTED │ RST at 18KB │
+│ CNT-06 │ AS141995 │ Contabo 2         │ DETECTED │ RST at 18KB │
+│ CNT-07 │ AS141995 │ Contabo 2         │ DETECTED │ RST at 18KB │
+│ DO-01  │ AS14061  │ DigitalOcean 1    │ DETECTED │ RST at 18KB │
+│ DO-02  │ AS14061  │ DigitalOcean 1    │ DETECTED │ RST at 18KB │
+│ DO-03  │ AS14061  │ DigitalOcean 1    │ DETECTED │ RST at 18KB │
+│ DO-04  │ AS14061  │ DigitalOcean 1    │ DETECTED │ RST at 18KB │
+│ DO-05  │ AS14061  │ DigitalOcean 1    │ DETECTED │ RST at 18KB │
+│ DO-06  │ AS46652  │ DigitalOcean 2    │ DETECTED │ RST at 18KB │
+│ DO-07  │ AS46652  │ DigitalOcean 2    │ DETECTED │ RST at 18KB │
+│ FST-01 │ AS54113  │ Fastly            │    OK    │ 3.1s        │
+│ FST-02 │ AS54113  │ Fastly            │    OK    │ 3.1s        │
+│ FST-03 │ AS54113  │ Fastly GitHub 108 │    OK    │ 3.1s        │
+│ FST-04 │ AS54113  │ Fastly GitHub 109 │    OK    │ 3.1s        │
+│ FST-05 │ AS54113  │ Fastly GitHub 110 │    OK    │ 3.1s        │
+│ FST-06 │ AS54113  │ Fastly GitHub 111 │    OK    │ 3.1s        │
+│ FST-07 │ AS54113  │ Fastly Gog        │    OK    │ 3.1s        │
+│ AWS-02 │ AS16509☆ │ AWS 1             │ DETECTED │ RST at 18KB │
+│ AWS-03 │ AS16509☆ │ AWS 1             │ DETECTED │ RST at 18KB │
+│ AWS-04 │ AS14618  │ AWS 2             │ DETECTED │ RST at 18KB │
+│ AWS-05 │ AS14618  │ AWS 2             │ DETECTED │ RST at 18KB │
+│ AWS-06 │ AS8987   │ AWS 3             │ DETECTED │ RST at 18KB │
+│ AWS-07 │ AS8987   │ AWS 3             │ DETECTED │ RST at 18KB │
+│ CDN-02 │ AS60068  │ CDN77 #1          │ DETECTED │ RST at 18KB │
+│ CDN-03 │ AS60068  │ CDN77 #1          │ DETECTED │ RST at 18KB │
+│ CDN-04 │ AS60068  │ CDN77 #1 HTTP     │ DETECTED │ RST at 18KB │
+│ CDN-05 │ AS212238 │ CDN77 #2          │ DETECTED │ RST at 18KB │
+│ CDN-06 │ AS212238 │ CDN77 #2          │ DETECTED │ RST at 18KB │
+│ CDN-07 │ AS212238 │ CDN77 #2          │ DETECTED │ RST at 18KB │
+│ CF-01  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ CF-02  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ CF-03  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ CF-04  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ CF-05  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ CF-06  │ AS13335  │ Cloudflare        │ DETECTED │ RST at 18KB │
+│ GCR-01 │ AS199524 │ Gcore 1           │    OK    │ 3.1s        │
+│ GCR-02 │ AS199524 │ Gcore 1           │    OK    │ 3.1s        │
+│ GCR-03 │ AS199524 │ Gcore 1           │    OK    │ 3.1s        │
+│ GCR-04 │ AS199524 │ Gcore 1           │    OK    │ 3.1s        │
+│ GCR-05 │ AS202422 │ Gcore 2           │    OK    │ 3.1s        │
+│ GCR-06 │ AS202422 │ Gcore 2           │    OK    │ 3.1s        │
+│ OVH-01 │ AS16276  │ OVH               │ DETECTED │ RST at 18KB │
+│ OVH-02 │ AS16276  │ OVH               │ DETECTED │ RST at 18KB │
+│ OVH-03 │ AS16276  │ OVH               │ DETECTED │ RST at 18KB │
+│ OVH-04 │ AS16276  │ OVH               │ DETECTED │ RST at 18KB │
+│ OVH-05 │ AS16276  │ OVH               │ DETECTED │ RST at 18KB │
+│ OVH-06 │ AS16276  │ OVH HTTP          │ DETECTED │ RST at 18KB │
+│ VLT-01 │ AS20473  │ Vultr             │    OK    │ 3.1s        │
+│ VLT-02 │ AS20473  │ Vultr             │    OK    │ 3.1s        │
+│ VLT-03 │ AS20473  │ Vultr             │    OK    │ 3.1s        │
+│ VLT-04 │ AS20473  │ Vultr             │    OK    │ 3.1s        │
+│ CV-01  │ AS62240  │ Clouvider         │    OK    │ 3.1s        │
+│ CV-02  │ AS62240  │ Clouvider         │    OK    │ 3.1s        │
+│ FT-01  │ AS53667  │ FranTech          │    OK    │ 3.1s        │
+│ FT-02  │ AS53667  │ FranTech          │    OK    │ 3.1s        │
+│ GC-01  │ AS396982 │ Google Cloud      │    OK    │ 3.1s        │
+│ GC-02  │ AS396982 │ Google Cloud      │    OK    │ 3.1s        │
+│ IM-01  │ AS20860  │ IOMART 1          │    OK    │ 3.1s        │
+│ IM-02  │ AS21130  │ IOMART 2          │    OK    │ 3.1s        │
+│ MBC-01 │ AS8849   │ Melbicom 1        │    OK    │ 3.1s        │
+│ MBC-03 │ AS56630  │ Melbicom 2        │    OK    │ 3.1s        │
+│ CN-01  │ AS51765  │ CreaNova          │    OK    │ 3.1s        │
+│ FRX-01 │ AS48040  │ Fornex            │    OK    │ 3.1s        │
+│ ME-01  │ AS9009   │ M247 Europe SRL   │    OK    │ 3.1s        │
+│ SCA-01 │ AS58061  │ Scalaxy           │    OK    │ 3.1s        │
+│ ZL-01  │ AS21859  │ Zenlayer          │    OK    │ 3.1s        │
+└────────┴──────────┴───────────────────┴──────────┴─────────────┘
+
+Поиск белых SNI для ASN  Целей: 110 | SNI: 187 | батч: 5
+
+  Hetzner AS24940  ✓ yandex.ru #3  vk.com #1
+  Cloudflare AS13335  × SNI не найден (все заблокированы)
+
+Найдено белых SNI: у 1 из 2 заблокированных AS
+
+╭───────────────────── Итог ─────────────────────╮
+│ TCP 16-20KB  √ 52/110 OK  × 58 блок.  (47% ОК) │
+╰────────────────────────────────────────────────╯
+
