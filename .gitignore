@@ -3,4 +3,5 @@ history/
 __pycache__/
 .pytest_cache/
 venv/
+shortcuts/unsigned/
 .superpowers/

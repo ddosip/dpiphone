@@ -24,33 +24,46 @@ sh install.sh
 
 ## Команды (Shortcuts)
 
-Три Команды, одинаковые по устройству, различаются режимом. Действия по порядку:
+Готовые, подписанные файлы лежат в папке `shortcuts/`: «Сеть быстро», «Сеть полностью»,
+«Сеть белые SNI» и служебная «DPI Save». Установка на iPhone: открыть в Safari
+страницу репозитория, зайти в `shortcuts/`, скачать каждый `.shortcut`, затем в Файлах
+нажать на него и подтвердить добавление. Или передать файлы с Mac через AirDrop.
+«DPI Save» обязательна: её по имени вызывает a-Shell в конце прогона, переименовывать
+нельзя. Файлы пересобираются на Mac командой `python3 shortcuts/make_shortcuts.py`.
 
-1. **Получить сведения о сети** → переменная `Сеть`: SSID Wi-Fi, а если его нет,
-   имя оператора. Если пусто, подставьте текст `unknown`.
-   Затем **Заменить текст**: убрать из `Сеть` символы `"` и `$`, иначе строка
-   команды в a-Shell ломается.
-2. **a-Shell: Выполнить команду**, режим «в приложении», текст из шести строк
-   (вместо `<Сеть>` вставьте переменную, вместо `<тесты>` и `<режим>` значения из
-   таблицы ниже). Вторая строка убирает файлы прошлого прогона, чтобы Команда не
-   показала старый отчёт, если обёртка не запустилась; третья задаёт ширину
-   терминала, иначе на узком экране движок обрежет таблицы и отчёт скажет «лог
-   нечитаем» (если a-Shell ругается на `export`, замените на `setenv COLUMNS 120`):
+Каждая Команда запуска это одно действие a-Shell «Выполнить команду» в приложении.
+При запуске в приложении Shortcuts не ждёт конца команды, поэтому показ отчёта и
+сохранение в iCloud вынесены в «DPI Save», которую a-Shell сам запускает последней
+строкой через `open shortcuts://run-shortcut?name=DPI%20Save`. Файлы для Команды
+a-Shell отдаёт только из своей общей папки `$SHORTCUTS`, туда они и копируются.
+
+### Как собрать вручную
+
+Если готовые файлы не импортируются, Команды собираются руками. Команда запуска:
+одно действие **a-Shell: Выполнить команду**, режим «в приложении», текст (вместо
+`<тесты>` и `<режим>` значения из таблицы ниже):
 
 ```
-cd ~/Documents/dpiphone
-rm -f out/summary.txt out/name.txt out/last.log out/last.json
+cd $HOME/Documents/dpiphone
+mkdir -p $SHORTCUTS/dpiphone
+rm -f out/summary.txt out/name.txt out/last.log out/last.json $SHORTCUTS/dpiphone/summary.txt $SHORTCUTS/dpiphone/name.txt $SHORTCUTS/dpiphone/last.log $SHORTCUTS/dpiphone/last.json
 export COLUMNS=120
 python ../dpi-detector/dpi_detector.py -t <тесты> --batch -c 20 -o out/raw.log > out/console.log 2>&1
-python report.py --mode <режим> --net "<Сеть>"
-open shortcuts://
+python report.py --mode <режим>
+cp out/summary.txt out/name.txt out/last.log out/last.json $SHORTCUTS/dpiphone/
+open shortcuts://run-shortcut?name=DPI%20Save
 ```
 
-3. **a-Shell: Получить файл** `~/Documents/dpiphone/out/summary.txt` → **Показать результат**.
-4. **a-Shell: Получить файл** `~/Documents/dpiphone/out/name.txt` → переменная `Имя`.
-5. **a-Shell: Получить файл** `~/Documents/dpiphone/out/last.log` → **Сохранить файл**
+Имя сети обёртка берёт сама из теста 0: первое слово оператора и ASN, например
+`MTS AS8359`. Передать своё можно флагом `--net "<имя>"`.
+
+Команда «DPI Save», действия по порядку:
+
+1. **a-Shell: Получить файл** `dpiphone/summary.txt` → **Показать результат**.
+2. **a-Shell: Получить файл** `dpiphone/name.txt` → переменная `Имя`.
+3. **a-Shell: Получить файл** `dpiphone/last.log` → **Сохранить файл**
    в iCloud Drive, путь `DPI Logs/<Имя>.log`, «Спрашивать, куда сохранить» выключено.
-6. То же для `out/last.json` → `DPI Logs/<Имя>.json`.
+4. То же для `dpiphone/last.json` → `DPI Logs/<Имя>.json`.
 
 | Команда              | режим | тесты | что делает                                   | время, трафик        |
 |----------------------|-------|-------|----------------------------------------------|----------------------|

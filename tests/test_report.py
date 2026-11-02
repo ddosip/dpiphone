@@ -106,3 +106,17 @@ def test_asn_change_unsticks_after_repeat(tmp_path):
     assert p1.stdout.splitlines()[0].startswith("Похоже, включён VPN")
     rec = json.loads((tmp_path / "out" / "last.json").read_text(encoding="utf-8"))
     assert rec["verdict"]["code"] != "vpn" and rec["valid_base"] is True, p2.stdout
+
+
+def test_network_name_falls_back_to_operator_and_asn(tmp_path):
+    p = run_report(tmp_path, "quick", "", "whitelist_quick.log")
+    assert p.returncode == 0, p.stderr
+    assert (tmp_path / "out" / "name.txt").read_text(encoding="utf-8").endswith("_quick_MTS_AS8359")
+    assert "Сеть: MTS AS8359 · AS8359 MTS PJSC" in p.stdout
+
+
+def test_network_name_fallback_without_netinfo_is_unknown(tmp_path):
+    (tmp_path / "out").mkdir()
+    shutil.copy(FIX / "sni_found.log", tmp_path / "out" / "raw.log")
+    p = run_report(tmp_path, "sni", "")
+    assert (tmp_path / "out" / "name.txt").read_text(encoding="utf-8").endswith("_sni_unknown")

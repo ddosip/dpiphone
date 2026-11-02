@@ -52,8 +52,17 @@ def _read_engine_log(out: Path):
     return text, partial
 
 
+def default_net_name(run: RunResult) -> str:
+    """Имя сети, когда Команда его не передала: первое слово оператора и ASN из теста 0."""
+    if run.net is None or not (run.net.org or run.net.asn):
+        return ""
+    org = (run.net.org or "").split(" ")[0]
+    return " ".join(p for p in (org, run.net.asn) if p)
+
+
 def build_record(text: str, mode: str, net_raw: str, hist: Path, engine: Path, now: datetime) -> RunRecord:
     run = parse_log(text, load_known_domains(engine))
+    net_raw = net_raw.strip() or default_net_name(run)
     net = sanitize(net_raw)
     base = history.find_base(hist, net) if mode != "sni" else None
     latest = history.find_latest(hist, net) if mode != "sni" else None
@@ -89,7 +98,7 @@ def _log_header(rec: RunRecord, partial: bool) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--mode", choices=sorted(MODE_TESTS), required=True)
-    ap.add_argument("--net", default="")
+    ap.add_argument("--net", default="", help="имя сети; пусто → оператор и ASN из теста 0")
     ap.add_argument("--out", default="out")
     ap.add_argument("--history", default="history")
     ap.add_argument("--engine", default="../dpi-detector")
