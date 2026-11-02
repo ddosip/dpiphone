@@ -126,27 +126,36 @@ class RunRecord:
     valid_base: bool = False
 
 
-_FIELD_CLASSES = {
-    "net": NetInfo, "dns": DnsResult, "telegram": TelegramResult, "sni": SniResult,
-    "result": RunResult, "verdict": Verdict, "diff": Diff,
+_CLASSES = {
+    "NetInfo": NetInfo, "DnsResult": DnsResult, "DomainResult": DomainResult, "TcpTarget": TcpTarget,
+    "TelegramResult": TelegramResult, "SniResult": SniResult, "RunResult": RunResult,
+    "Verdict": Verdict, "Diff": Diff,
 }
-_LIST_CLASSES = {"domains": DomainResult, "tcp": TcpTarget}
+_LIST_RE = re.compile(r"List\[(\w+)\]")
+_NAME_RE = re.compile(r"\b(\w+)\b")
+
+
+def _build(cls: Any, data: Any) -> Any:
+    """Восстанавливает dataclass из словаря по строковым аннотациям полей."""
+    if data is None:
+        return None
+    kwargs = {}
+    for f in fields(cls):
+        if f.name not in data:
+            continue
+        v = data[f.name]
+        hint = f.type if isinstance(f.type, str) else getattr(f.type, "__name__", "")
+        m = _LIST_RE.search(hint)
+        if m and m.group(1) in _CLASSES and v is not None:
+            v = [_build(_CLASSES[m.group(1)], x) for x in v]
+        else:
+            inner = next((n for n in _NAME_RE.findall(hint) if n in _CLASSES), None)
+            if inner is not None and isinstance(v, dict):
+                v = _build(_CLASSES[inner], v)
+        kwargs[f.name] = v
+    return cls(**kwargs)
 
 
 def record_from_dict(d: Dict[str, Any]) -> RunRecord:
     """Обратное к dataclasses.asdict для RunRecord."""
-    def build(cls: Any, data: Any) -> Any:
-        if data is None:
-            return None
-        kwargs = {}
-        for f in fields(cls):
-            if f.name not in data:
-                continue
-            v = data[f.name]
-            if f.name in _FIELD_CLASSES:
-                v = build(_FIELD_CLASSES[f.name], v)
-            elif f.name in _LIST_CLASSES and v is not None:
-                v = [build(_LIST_CLASSES[f.name], x) for x in v]
-            kwargs[f.name] = v
-        return cls(**kwargs)
-    return build(RunRecord, d)
+    return _build(RunRecord, d)
