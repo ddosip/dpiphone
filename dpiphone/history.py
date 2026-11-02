@@ -33,6 +33,12 @@ def load_all(history_dir: Path) -> List[RunRecord]:
     return out
 
 
+def find_latest(history_dir: Path, net: str) -> Optional[RunRecord]:
+    """Последний прогон на сети, годный или нет."""
+    same = [r for r in load_all(history_dir) if r.net == net]
+    return max(same, key=lambda r: r.timestamp) if same else None
+
+
 def find_base(history_dir: Path, net: str) -> Optional[RunRecord]:
     """Последний полноценный прогон на сети с тем же именем."""
     candidates = [r for r in load_all(history_dir) if r.net == net and r.valid_base]

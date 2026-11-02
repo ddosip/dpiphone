@@ -13,6 +13,7 @@ from dpiphone.model import RunResult, Verdict
 
 TEXT = {
     "no_data": "Сеть почти не отвечает, проверить не удалось",
+    "truncated": "Лог нечитаем: таблицы обрезаны, нужна ширина терминала не меньше 80 колонок",
     "vpn": "Похоже, включён VPN или прокси, прогон не о вашем операторе",
     "dns_and_whitelist": "Смешанная картина: подмена DNS и белый список",
     "dns_new": "Оператор начал подменять DNS",
@@ -100,7 +101,16 @@ def _whitelist_text(run: RunResult) -> str:
     return text
 
 
-def decide(run: RunResult, base: Optional[RunResult], mode: str = "quick") -> Verdict:
+def _same_operator(a: Optional[str], b: Optional[str]) -> bool:
+    """Первое слово org совпадает: MTS PJSC и MTS Yug это один оператор с разными ASN."""
+    fa, fb = (a or "").split(" ")[0].upper(), (b or "").split(" ")[0].upper()
+    return bool(fa) and fa == fb
+
+
+def decide(run: RunResult, base: Optional[RunResult], mode: str = "quick", trust_asn: bool = False) -> Verdict:
+    """trust_asn: ASN уже подтверждён повторным прогоном, расхождение с базой не считать VPN."""
+    if run.truncated:
+        return Verdict("no_data", TEXT["truncated"])
     if mode == "sni":
         if not run.complete:
             return Verdict("no_data", TEXT["no_data"])
@@ -114,8 +124,9 @@ def decide(run: RunResult, base: Optional[RunResult], mode: str = "quick") -> Ve
         return Verdict("no_data", TEXT["no_data"])
 
     # 0б. VPN или прокси
-    if _fakeip(run) or (base is not None and base.net is not None
-                        and base.net.asn and run.net.asn and base.net.asn != run.net.asn):
+    asn_differs = (base is not None and base.net is not None and base.net.asn and run.net.asn
+                   and base.net.asn != run.net.asn and not _same_operator(base.net.org, run.net.org))
+    if _fakeip(run) or (asn_differs and not trust_asn):
         return Verdict("vpn", TEXT["vpn"])
 
     dns_new = dns_substituted(run) and base is not None and not dns_substituted(base)

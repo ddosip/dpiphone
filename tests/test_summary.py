@@ -54,9 +54,9 @@ def test_full_summary_has_telegram_line():
 
 
 def test_sanitize():
-    assert sanitize("Домашний Wi-Fi 5G") == "Wi-Fi_5G"
+    assert sanitize("Домашний Wi-Fi 5G") == "Домашний_Wi-Fi_5G"
     assert sanitize("") == "unknown"
-    assert sanitize('MTS "Россия"') == "MTS"
+    assert sanitize('MTS "Россия"') == "MTS_Россия"
     assert sanitize("x" * 60) == "x" * 40
 
 

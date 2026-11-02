@@ -88,6 +88,7 @@ class RunResult:
     tcp: Optional[List[TcpTarget]] = None
     telegram: Optional[TelegramResult] = None
     sni: Optional[SniResult] = None
+    truncated: bool = False             # ячейки статусов обрезаны «…»: терминал слишком узкий
 
 
 @dataclass

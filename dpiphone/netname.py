@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import re
 
-_BAD = re.compile(r"[^A-Za-z0-9_-]+")
+_BAD = re.compile(r"[^\w-]+", re.UNICODE)
 
 
 def sanitize(net_raw: str) -> str:
-    """Только [A-Za-z0-9_-], подряд идущие '_' схлопнуты, пусто → 'unknown', не длиннее 40."""
+    """Буквы (в том числе кириллица), цифры, '_' и '-'; остальное → '_', подряд идущие схлопнуты; пусто → 'unknown'; не длиннее 40."""
     s = _BAD.sub("_", net_raw or "")
     s = re.sub(r"_+", "_", s).strip("_")
     return (s or "unknown")[:40]

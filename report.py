@@ -35,22 +35,33 @@ def _engine_commit() -> str:
 
 
 def _read_engine_log(out: Path):
-    """(текст лога, неполный ли он): raw.log из -o, иначе console.log, иначе заглушка."""
-    raw = out / "raw.log"
+    """(текст лога, неполный ли он): raw.log из -o, иначе console.log, иначе заглушка.
+
+    Прочитанные файлы переименовываются в *.prev: движок пишет raw.log только в конце,
+    и без этого упавший прогон подхватил бы raw.log прошлого.
+    """
+    raw, console = out / "raw.log", out / "console.log"
+    text, partial = NO_OUTPUT, True
     if raw.exists():
-        return raw.read_text(encoding="utf-8", errors="replace"), False
-    console = out / "console.log"
-    if console.exists():
-        return console.read_text(encoding="utf-8", errors="replace"), True
-    return NO_OUTPUT, True
+        text, partial = raw.read_text(encoding="utf-8", errors="replace"), False
+    elif console.exists():
+        text, partial = console.read_text(encoding="utf-8", errors="replace"), True
+    for p in (raw, console):
+        if p.exists():
+            p.replace(p.with_suffix(".prev.log"))
+    return text, partial
 
 
 def build_record(text: str, mode: str, net_raw: str, hist: Path, engine: Path, now: datetime) -> RunRecord:
     run = parse_log(text, load_known_domains(engine))
     net = sanitize(net_raw)
     base = history.find_base(hist, net) if mode != "sni" else None
-    verdict = decide(run, base.result if base else None, mode)
-    diff = compare(run, base) if base else None
+    latest = history.find_latest(hist, net) if mode != "sni" else None
+    # ASN подтверждён, если предыдущий прогон на этой сети (любой годности) видел тот же ASN
+    trust_asn = bool(latest and latest.result.net and run.net and latest.result.net.asn
+                     and latest.result.net.asn == run.net.asn)
+    verdict = decide(run, base.result if base else None, mode, trust_asn=trust_asn)
+    diff = compare(run, base) if base and verdict.code not in ("no_data", "vpn") else None
     valid = run.complete and verdict.code not in ("no_data", "vpn") and mode != "sni"
     return RunRecord(
         timestamp=now.strftime("%Y-%m-%dT%H:%M:%S"), mode=mode, net=net, net_raw=net_raw,
@@ -99,7 +110,7 @@ def main(argv=None) -> int:
 
     stem = file_stem(rec.timestamp, rec.mode, rec.net)
     (out / "summary.txt").write_text(summary + "\n", encoding="utf-8")
-    (out / "name.txt").write_text(stem + "\n", encoding="utf-8")
+    (out / "name.txt").write_text(stem, encoding="utf-8")   # без перевода строки: Команда подставляет его в имя файла
     data = asdict(rec)
     data["summary"] = summary
     (out / "last.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

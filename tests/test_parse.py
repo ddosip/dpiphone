@@ -84,3 +84,18 @@ def test_sni_found():
 def test_load_known_domains(tmp_path):
     (tmp_path / "domains.txt").write_text("x.com/i/api/1.1/graphql\nwww.google.com\n", encoding="utf-8")
     assert load_known_domains(tmp_path) == ["x.com", "www.google.com"]
+
+
+def test_wrapped_summary_rows_are_joined():
+    text = (FIX / "full_ok.log").read_text(encoding="utf-8")
+    text = text.replace("│ DNS доступность    36/36 DoH  32/33 DoT  35/37 UDP        │",
+                        "│ DNS доступность    36/36 DoH  32/33    │\n│                    DoT  35/37 UDP      │")
+    d = parse_log(text, DOMAINS).dns
+    assert (d.doh_ok, d.dot_ok, d.udp_ok, d.udp_total) == (36, 32, 35, 37)
+
+
+def test_truncated_status_cells_flag_log_unreadable():
+    text = (FIX / "whitelist_quick.log").read_text(encoding="utf-8").replace("DETECTED", "DETE…   ")
+    r = parse_log(text, DOMAINS)
+    assert r.truncated is True
+    assert parse_log((FIX / "whitelist_quick.log").read_text(encoding="utf-8"), DOMAINS).truncated is False

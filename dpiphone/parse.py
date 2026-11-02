@@ -32,6 +32,8 @@ _SNI_FOUND = re.compile(r"Найдено белых SNI: у (\d+) из (\d+) з�
 _SNI_NONE = re.compile(r"Белые SNI не найдены ни для одной из (\d+) заблокированных AS")
 _SNI_NOT_NEEDED = "Ни одна AS не заблокирована"
 
+_SUMMARY_LABELS = ("DNS доступность", "Подмена резолвера", "Подмена ответов", "FakeIP ответов",
+                   "Домены", "TCP 16-20KB", "TG Скачивание", "TG Загрузка", "TG Датацентры")
 _ISP_WARNING = "[!] Ваш интернет-провайдер перехватывает DNS-запросы"
 _FAKEIP_WARNING = "[!] DNS-ответы содержат FakeIP"
 _DNS_HEADER = "Проверка доступности DNS-серверов"
@@ -92,6 +94,7 @@ class _Parser:
         self.sni_found: Optional[int] = None
         self.sni_blocked: Optional[int] = None
         self.saw_sni = False
+        self.truncated = False
 
     # ── строки ────────────────────────────────────────────────────────────
     def feed(self, line: str) -> None:
@@ -119,7 +122,11 @@ class _Parser:
             if s.startswith("╰"):
                 self.section = ""
             elif s.startswith("│"):
-                self.summary_lines.append(s.strip("│ ").strip())
+                cell = s.strip("│ ").strip()
+                if cell.startswith(_SUMMARY_LABELS) or not self.summary_lines:
+                    self.summary_lines.append(cell)
+                else:   # перенос строки панели на узком терминале
+                    self.summary_lines[-1] += " " + cell
             return
         if self.section in ("domains", "tcp"):
             if s.startswith("└"):
@@ -136,6 +143,9 @@ class _Parser:
         if len(cells) != 5:
             return
         if cells[0]:
+            status_cells = cells[1:4] if self.section == "domains" else cells[3:4]
+            if any("…" in c for c in status_cells):
+                self.truncated = True
             rows.append(cells)
             return
         if not rows:
@@ -296,4 +306,5 @@ def parse_log(text: str, known_domains: List[str]) -> RunResult:
         tcp=p.tcp(),
         telegram=p.telegram(),
         sni=p.sni(),
+        truncated=p.truncated,
     )

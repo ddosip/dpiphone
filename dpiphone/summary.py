@@ -98,6 +98,8 @@ def _when(ts: str) -> str:
 
 
 def _compare_line(rec: RunRecord) -> str:
+    if rec.verdict.code in ("no_data", "vpn"):
+        return "Сравнение пропущено: прогон не полноценный"
     if rec.diff is None:
         return "Первый прогон на этой сети"
     head = "Прошлый прогон на {} ({}): ".format(rec.net_raw, _when(rec.diff.base_timestamp))

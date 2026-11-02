@@ -36,7 +36,9 @@ def test_fakeip_is_vpn():
 
 
 def test_asn_change_against_base_is_vpn():
-    assert decide(make_run(asn="AS197540"), make_run(asn="AS8359")).code == "vpn"
+    now = make_run(asn="AS197540")
+    now.net.org = "netcup GmbH"
+    assert decide(now, make_run(asn="AS8359")).code == "vpn"
 
 
 def test_whitelist_requires_three_full_providers():
@@ -83,3 +85,18 @@ def test_sni_mode_only_whitelist_or_ok():
     r = RunResult(complete=True, tcp=[TcpTarget(id="X", asn="AS1", provider="Other", status="OK")] * 110)
     assert decide(r, None, mode="sni").code == "ok"
     assert decide(RunResult(complete=False), None, mode="sni").code == "no_data"
+
+
+def test_truncated_log_is_no_data_with_hint():
+    r = make_run()
+    r.truncated = True
+    v = decide(r, None)
+    assert v.code == "no_data" and "ширин" in v.text
+
+
+def test_same_operator_different_asn_is_not_vpn():
+    base = make_run(asn="AS8359")
+    base.net.org = "MTS PJSC"
+    now = make_run(asn="AS29497")
+    now.net.org = "MTS Yug"
+    assert decide(now, base).code == "ok"
